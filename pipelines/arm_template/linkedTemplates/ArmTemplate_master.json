@@ -1,0 +1,119 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "factoryName": {
+            "type": "string",
+            "metadata": "Nombre de instancia de Data Factory",
+            "defaultValue": "practicaETLFinalJV"
+        },
+        "BlobStorage_Ames_connectionString": {
+            "type": "secureString",
+            "metadata": "Cadena protegida para \"connectionString\"de \"BlobStorage_Ames\""
+        },
+        "PostgreSql_password": {
+            "type": "secureString",
+            "metadata": "Cadena protegida para \"password\"de \"PostgreSql\""
+        },
+        "MongoNoSql_connectionString": {
+            "type": "secureString",
+            "metadata": "Cadena protegida para \"connectionString\"de \"MongoNoSql\""
+        },
+        "AzurePostgreSql1_password": {
+            "type": "secureString",
+            "metadata": "Cadena protegida para \"password\"de \"AzurePostgreSql1\""
+        },
+        "PostgreSql_properties_typeProperties_server": {
+            "type": "string",
+            "defaultValue": "ep-lingering-river-a85szbey-pooler.eastus2.azure.neon.tech"
+        },
+        "PostgreSql_properties_typeProperties_database": {
+            "type": "string",
+            "defaultValue": "amesDB"
+        },
+        "PostgreSql_properties_typeProperties_username": {
+            "type": "string",
+            "defaultValue": "infrati"
+        },
+        "MongoNoSql_properties_typeProperties_database": {
+            "type": "string",
+            "defaultValue": "test"
+        },
+        "AzurePostgreSql1_properties_typeProperties_server": {
+            "type": "string",
+            "defaultValue": "ep-lingering-river-a85szbey-pooler.eastus2.azure.neon.tech"
+        },
+        "AzurePostgreSql1_properties_typeProperties_database": {
+            "type": "string",
+            "defaultValue": "amesDB"
+        },
+        "AzurePostgreSql1_properties_typeProperties_username": {
+            "type": "string",
+            "defaultValue": "infrati"
+        },
+        "containerUri": {
+            "type": "string",
+            "metadata": "URI de la cuenta de almacenamiento que contiene las plantillas de ARM vinculadas."
+        },
+        "containerSasToken": {
+            "type": "string",
+            "metadata": "Token de SAS para la cuenta de almacenamiento que contiene las plantillas de ARM vinculadas"
+        }
+    },
+    "variables": {
+        "factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+    },
+    "resources": [
+        {
+            "name": "practicaETLFinalJV_ArmTemplate_0",
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2024-03-01",
+            "properties": {
+                "mode": "incremental",
+                "templateLink": {
+                    "uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parameters": {
+                    "factoryName": {
+                        "value": "[parameters('factoryName')]"
+                    },
+                    "BlobStorage_Ames_connectionString": {
+                        "value": "[parameters('BlobStorage_Ames_connectionString')]"
+                    },
+                    "PostgreSql_password": {
+                        "value": "[parameters('PostgreSql_password')]"
+                    },
+                    "MongoNoSql_connectionString": {
+                        "value": "[parameters('MongoNoSql_connectionString')]"
+                    },
+                    "AzurePostgreSql1_password": {
+                        "value": "[parameters('AzurePostgreSql1_password')]"
+                    },
+                    "PostgreSql_properties_typeProperties_server": {
+                        "value": "[parameters('PostgreSql_properties_typeProperties_server')]"
+                    },
+                    "PostgreSql_properties_typeProperties_database": {
+                        "value": "[parameters('PostgreSql_properties_typeProperties_database')]"
+                    },
+                    "PostgreSql_properties_typeProperties_username": {
+                        "value": "[parameters('PostgreSql_properties_typeProperties_username')]"
+                    },
+                    "MongoNoSql_properties_typeProperties_database": {
+                        "value": "[parameters('MongoNoSql_properties_typeProperties_database')]"
+                    },
+                    "AzurePostgreSql1_properties_typeProperties_server": {
+                        "value": "[parameters('AzurePostgreSql1_properties_typeProperties_server')]"
+                    },
+                    "AzurePostgreSql1_properties_typeProperties_database": {
+                        "value": "[parameters('AzurePostgreSql1_properties_typeProperties_database')]"
+                    },
+                    "AzurePostgreSql1_properties_typeProperties_username": {
+                        "value": "[parameters('AzurePostgreSql1_properties_typeProperties_username')]"
+                    }
+                }
+            },
+            "dependsOn": []
+        }
+    ]
+}

@@ -1,0 +1,24 @@
+{
+    "name": "df_csv_salida",
+    "properties": {
+        "linkedServiceName": {
+            "referenceName": "BlobStorage_Ames",
+            "type": "LinkedServiceReference"
+        },
+        "annotations": [],
+        "type": "DelimitedText",
+        "typeProperties": {
+            "location": {
+                "type": "AzureBlobStorageLocation",
+                "folderPath": "salida",
+                "container": "ames-etl-data"
+            },
+            "columnDelimiter": ";",
+            "escapeChar": "\\",
+            "firstRowAsHeader": true,
+            "quoteChar": "\""
+        },
+        "schema": []
+    },
+    "type": "Microsoft.DataFactory/factories/datasets"
+}

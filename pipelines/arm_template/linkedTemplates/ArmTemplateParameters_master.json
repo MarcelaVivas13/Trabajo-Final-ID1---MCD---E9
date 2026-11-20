@@ -1,0 +1,48 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "factoryName": {
+            "value": "practicaETLFinalJV"
+        },
+        "BlobStorage_Ames_connectionString": {
+            "value": ""
+        },
+        "PostgreSql_password": {
+            "value": ""
+        },
+        "MongoNoSql_connectionString": {
+            "value": ""
+        },
+        "AzurePostgreSql1_password": {
+            "value": ""
+        },
+        "PostgreSql_properties_typeProperties_server": {
+            "value": "ep-lingering-river-a85szbey-pooler.eastus2.azure.neon.tech"
+        },
+        "PostgreSql_properties_typeProperties_database": {
+            "value": "amesDB"
+        },
+        "PostgreSql_properties_typeProperties_username": {
+            "value": "infrati"
+        },
+        "MongoNoSql_properties_typeProperties_database": {
+            "value": "test"
+        },
+        "AzurePostgreSql1_properties_typeProperties_server": {
+            "value": "ep-lingering-river-a85szbey-pooler.eastus2.azure.neon.tech"
+        },
+        "AzurePostgreSql1_properties_typeProperties_database": {
+            "value": "amesDB"
+        },
+        "AzurePostgreSql1_properties_typeProperties_username": {
+            "value": "infrati"
+        },
+        "containerUri": {
+            "value": ""
+        },
+        "containerSasToken": {
+            "value": ""
+        }
+    }
+}

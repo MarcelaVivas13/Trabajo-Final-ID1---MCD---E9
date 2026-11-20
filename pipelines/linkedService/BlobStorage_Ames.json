@@ -1,0 +1,11 @@
+{
+    "name": "BlobStorage_Ames",
+    "type": "Microsoft.DataFactory/factories/linkedservices",
+    "properties": {
+        "annotations": [],
+        "type": "AzureBlobStorage",
+        "typeProperties": {
+            "connectionString": "DefaultEndpointsProtocol=https;AccountName=practicaetl1jvadf;"
+            }
+    }
+}

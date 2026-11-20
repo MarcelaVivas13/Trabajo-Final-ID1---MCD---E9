@@ -1,0 +1,19 @@
+{
+    "name": "DS_Mongo_pool",
+    "properties": {
+        "linkedServiceName": {
+            "referenceName": "MongoNoSql",
+            "type": "LinkedServiceReference"
+        },
+        "folder": {
+            "name": "DS_Mongo"
+        },
+        "annotations": [],
+        "type": "MongoDbAtlasCollection",
+        "schema": [],
+        "typeProperties": {
+            "collection": "pool"
+        }
+    },
+    "type": "Microsoft.DataFactory/factories/datasets"
+}

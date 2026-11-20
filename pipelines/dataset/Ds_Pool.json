@@ -1,0 +1,25 @@
+{
+    "name": "Ds_Pool",
+    "properties": {
+        "linkedServiceName": {
+            "referenceName": "BlobStorage_Ames",
+            "type": "LinkedServiceReference"
+        },
+        "annotations": [],
+        "type": "DelimitedText",
+        "typeProperties": {
+            "location": {
+                "type": "AzureBlobStorageLocation",
+                "fileName": "pool",
+                "folderPath": "raw",
+                "container": "ames-etl-data"
+            },
+            "columnDelimiter": ",",
+            "escapeChar": "\\",
+            "firstRowAsHeader": true,
+            "quoteChar": "\""
+        },
+        "schema": []
+    },
+    "type": "Microsoft.DataFactory/factories/datasets"
+}
