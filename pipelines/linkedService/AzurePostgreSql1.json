@@ -6,11 +6,11 @@
         "type": "AzurePostgreSql",
         "version": "2.0",
         "typeProperties": {
-            "server": "ep-lingering-river-a85szbey-pooler.eastus2.azure.neon.tech",
+            "server": "<servidor>",
             "port": 5432,
             "database": "amesDB",
             "sslMode": 2,
-            "username": "infrati",
+            "username": "<usuario>",
             "authenticationType": "Basic"
         }
     }

@@ -5,9 +5,9 @@
         "annotations": [],
         "type": "MongoDbAtlas",
         "typeProperties": {
-            "connectionString": "<usuario>:<contraseña>",
+            "connectionString": "mongodb+srv://<usuario>:<contrasena>@<servidor>/",
             "database": "test",
             "driverVersion": "v2"
-        }
+            }
     }
 }
