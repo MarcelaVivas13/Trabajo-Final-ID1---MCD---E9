@@ -23,10 +23,10 @@ Después de crear el repositorio, reemplacen esta sección con la información r
 
 | Integrante | Usuario de GitHub |
 |---|---|
-| `[Nombre completo]` | `@[usuario]` |
-| `[Nombre completo]` | `@[usuario]` |
-| `[Nombre completo]` | `@[usuario]` |
-| `[Nombre completo]` | `@[usuario]` |
+| `Jenifer Marcela Vivas` | `@MarcelaVivas13` |
+| `Andres Olave` | `@Andrestast` |
+| `Santiago Portilla` | `@Sportilla16` |
+| `Sebastian Gonzalez` | `@sebasg0212@gmail.com` |
 
 ## Objetivo
 
