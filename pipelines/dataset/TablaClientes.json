@@ -1,0 +1,20 @@
+{
+	"name": "TablaClientes",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ClientesPostgreSQL",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Test"
+		},
+		"annotations": [],
+		"type": "PostgreSqlV2Table",
+		"schema": [],
+		"typeProperties": {
+			"schema": "public",
+			"table": "clientes"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

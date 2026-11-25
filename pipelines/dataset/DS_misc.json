@@ -1,0 +1,39 @@
+{
+	"name": "DS_misc",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AmesProperty",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "misc.csv",
+				"folderPath": "stage",
+				"container": "ames"
+			},
+			"columnDelimiter": ";",
+			"encodingName": "UTF-8",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "PID",
+				"type": "String"
+			},
+			{
+				"name": "Misc Feature",
+				"type": "String"
+			},
+			{
+				"name": "Misc Val",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

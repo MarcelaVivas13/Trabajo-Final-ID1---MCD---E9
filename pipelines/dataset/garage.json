@@ -1,0 +1,19 @@
+{
+	"name": "garage",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "MongoDbAtlas1",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "MongoDB"
+		},
+		"annotations": [],
+		"type": "MongoDbAtlasCollection",
+		"schema": [],
+		"typeProperties": {
+			"collection": "garage"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,59 @@
+{
+	"name": "DS_garage",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AmesProperty",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "garage.csv",
+				"folderPath": "stage",
+				"container": "ames"
+			},
+			"columnDelimiter": ";",
+			"encodingName": "UTF-8",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "PID",
+				"type": "String"
+			},
+			{
+				"name": "Garage Type",
+				"type": "String"
+			},
+			{
+				"name": "Garage Yr Blt",
+				"type": "String"
+			},
+			{
+				"name": "Garage Finish",
+				"type": "String"
+			},
+			{
+				"name": "Garage Cars",
+				"type": "String"
+			},
+			{
+				"name": "Garage Area",
+				"type": "String"
+			},
+			{
+				"name": "Garage Qual",
+				"type": "String"
+			},
+			{
+				"name": "Garage Cond",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
