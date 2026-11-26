@@ -56,8 +56,22 @@ La base relacional `amesDB` (esquema `public`) tiene 6 tablas: 3 entidades de da
 `floordetail` es la única entidad relacional con cardinalidad **1:N** respecto a `PID` (4.182 filas distribuidas entre 1.678 viviendas de un piso y 1.252 de dos pisos). Unirla directamente sin consolidar multiplicaría las 1.252 propiedades de dos niveles. Por ello se agrupa previamente por `pid` sumando `bedrooms`, `Full Bath` y `Half Bath` antes de cruzarla con `amesdbtemp`.
 
 #### Evidencias de PostgreSQL en Neon
-* **Figura 1. Esquema y conteos en `amesDB`:** ![Flujo de datos df_ames](anexos/3.2 amesdbtemp count.png).
-* **Figura 2. Comprobación de duplicados y relación 1:N en `floordetail`:** `[Insertar captura de GROUP BY / HAVING COUNT(*) > 1 y ejemplo de un PID con 2 pisos en floordetail]`.
+* **Figuras. Esquema y conteos en `amesDB`:**
+* ![Conteo de registros en amesdbtemp](anexos/3.2%20amesdbtemp%20count.png)
+*Figura 3.2a. Distribución por piso en `floordetail` (4.182 filas).*
+* ![Conteo de registros en floordetail](anexos/3.2%20floordetail%20count.png)
+*Figura 3.2b. Conteo total en `floordetail` antes de agrupar por `pid`.*
+* ![Conteo de registros en mssubclass](anexos/3.2%20mssubclass%20count.png)
+*Figura 3.2c. Verificación del catálogo `mssubclass` (16 registros).*
+* ![Conteo de registros en mszoning](anexos/3.2%20mszoning%20count.png)
+*Figura 3.2d. Verificación del catálogo `mszoning` (8 registros).*
+* ![Conteo de registros en saleproperty](anexos/3.2%20saleproperty%20count.png)
+*Figura 3.2e. Verificación de conteo en `saleproperty` (2.930 filas).*
+* ![Conteo de registros en typequality](anexos/3.2%20typequality%20count.png)
+*Figura 3.2f. Verificación del catálogo `typequality` (5 registros).*
+* **Figura. Comprobación de duplicados y relación 1:N en `floordetail`:**
+* *Figura 3.2g. Verificación de conteo en `amesdbtemp` (2.930 filas).*
+* ![Conteo de registros en floordetail (vista detalle)](anexos/3.2%20floordetail%20count.jpeg)
 
 ### 3.3 MongoDB Atlas (`test`)
 
