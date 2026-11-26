@@ -37,6 +37,8 @@ Antes de abrir Azure Data Factory, auditamos cada fuente por separado mediante `
 | **Campos que aporta a la salida** | **19 columnas:** `PID`, `Lot Frontage`, `Lot Area`, `Street`, `Alley`, `Lot Shape`, `Land Contour`, `Utilities`, `Lot Config`, `Land Slope`, `Neighborhood`, `Condition 1`, `Condition 2`, `Bldg Type`, `House Style`, `Overall Qual`, `Overall Cond`, `Year Built`, `Year Remod/Add` | Esquema de `Ds_CSV_ames` |
 | **Problemas de calidad relevantes** | • `Year Remod/Add`: 1.569 vacíos (53,5 %). Ningún valor presente iguala a `Year Built`, lo que confirma que el vacío significa "sin remodelación".<br>• `Lot Frontage`: 490 vacíos (16,7 %) distribuidos en las 5 categorías de `Lot Config`.<br>• `Alley`: texto literal `"NA"` en 2.732 filas (93,2 %); es una categoría válida ("sin callejón"), no un nulo.<br>• **Códigos mezclados:** `Lot Shape` y `Neighborhood` traen descripción (“Regular”, “North Ames”), no código; `Condition 1` mezcla 2.646 códigos con 284 descripciones; `Condition 2` mezcla 23 códigos con 2.907 descripciones.<br>• **Dominio:** `Greens` (8), `GrnHill` (2) y `Landmrk` (1) no están en la tabla de equivalencias del enunciado porque ya vienen como código.<br>• **Atípicos e inconsistencias:** `Lot Area` máx. `215.245` (`PID 916176125`), `Lot Frontage` máx. `313`, y `PID 907194160` con `Year Remod/Add = 2001` anterior a `Year Built = 2002` (conservados sin alterar). | Perfilación de datos en Microsoft Excel|
 
+![Ubicación del archivo CSV en Blob Storage](anexos/3.1_ubicacion_csv.jpeg)
+
 ### 3.2 PostgreSQL en Neon (`amesDB`)
 
 La base relacional `amesDB` (esquema `public`) tiene 6 tablas: 3 entidades de datos (`amesdbtemp`, `saleproperty`, `floordetail`) y 3 catálogos (`mszoning`, `typequality`, `mssubclass`). Al revisar el catálogo de restricciones (`pg_constraint`), confirmamos llaves primarias en todas las tablas y llaves foráneas desde `floordetail` y `saleproperty` hacia `amesdbtemp`; las relaciones hacia los catálogos no están declaradas como FK en el DDL, pero presentan integridad completa.
@@ -54,7 +56,7 @@ La base relacional `amesDB` (esquema `public`) tiene 6 tablas: 3 entidades de da
 `floordetail` es la única entidad relacional con cardinalidad **1:N** respecto a `PID` (4.182 filas distribuidas entre 1.678 viviendas de un piso y 1.252 de dos pisos). Unirla directamente sin consolidar multiplicaría las 1.252 propiedades de dos niveles. Por ello se agrupa previamente por `pid` sumando `bedrooms`, `Full Bath` y `Half Bath` antes de cruzarla con `amesdbtemp`.
 
 #### Evidencias de PostgreSQL en Neon
-* **Figura 1. Esquema y conteos en `amesDB`:** ![Flujo de datos df_ames](img/fig_1_df_ames.png).
+* **Figura 1. Esquema y conteos en `amesDB`:** ![Flujo de datos df_ames](anexos/3.2 amesdbtemp count.png).
 * **Figura 2. Comprobación de duplicados y relación 1:N en `floordetail`:** `[Insertar captura de GROUP BY / HAVING COUNT(*) > 1 y ejemplo de un PID con 2 pisos en floordetail]`.
 
 ### 3.3 MongoDB Atlas (`test`)
