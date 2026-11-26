@@ -37,7 +37,10 @@ Antes de abrir Azure Data Factory, auditamos cada fuente por separado mediante `
 | **Campos que aporta a la salida** | **19 columnas:** `PID`, `Lot Frontage`, `Lot Area`, `Street`, `Alley`, `Lot Shape`, `Land Contour`, `Utilities`, `Lot Config`, `Land Slope`, `Neighborhood`, `Condition 1`, `Condition 2`, `Bldg Type`, `House Style`, `Overall Qual`, `Overall Cond`, `Year Built`, `Year Remod/Add` | Esquema de `Ds_CSV_ames` |
 | **Problemas de calidad relevantes** | • `Year Remod/Add`: 1.569 vacíos (53,5 %). Ningún valor presente iguala a `Year Built`, lo que confirma que el vacío significa "sin remodelación".<br>• `Lot Frontage`: 490 vacíos (16,7 %) distribuidos en las 5 categorías de `Lot Config`.<br>• `Alley`: texto literal `"NA"` en 2.732 filas (93,2 %); es una categoría válida ("sin callejón"), no un nulo.<br>• **Códigos mezclados:** `Lot Shape` y `Neighborhood` traen descripción (“Regular”, “North Ames”), no código; `Condition 1` mezcla 2.646 códigos con 284 descripciones; `Condition 2` mezcla 23 códigos con 2.907 descripciones.<br>• **Dominio:** `Greens` (8), `GrnHill` (2) y `Landmrk` (1) no están en la tabla de equivalencias del enunciado porque ya vienen como código.<br>• **Atípicos e inconsistencias:** `Lot Area` máx. `215.245` (`PID 916176125`), `Lot Frontage` máx. `313`, y `PID 907194160` con `Year Remod/Add = 2001` anterior a `Year Built = 2002` (conservados sin alterar). | Perfilación de datos en Microsoft Excel|
 
+#### Evidencias de csv AmesProperty
+
 ![Ubicación del archivo CSV en Blob Storage](anexos/3.1%20ubicación%20csv.jpeg)
+*Figura 3.1. Verificación ubicación y disposición de archivo AmesProperty (2.930 filas).*
 
 ### 3.2 PostgreSQL en Neon (`amesDB`)
 
@@ -56,22 +59,39 @@ La base relacional `amesDB` (esquema `public`) tiene 6 tablas: 3 entidades de da
 `floordetail` es la única entidad relacional con cardinalidad **1:N** respecto a `PID` (4.182 filas distribuidas entre 1.678 viviendas de un piso y 1.252 de dos pisos). Unirla directamente sin consolidar multiplicaría las 1.252 propiedades de dos niveles. Por ello se agrupa previamente por `pid` sumando `bedrooms`, `Full Bath` y `Half Bath` antes de cruzarla con `amesdbtemp`.
 
 #### Evidencias de PostgreSQL en Neon
-* **Figuras. Esquema y conteos en `amesDB`:**
-* ![Conteo de registros en amesdbtemp](anexos/3.2%20amesdbtemp%20count.png)
-*Figura 3.2a. Distribución por piso en `floordetail` (4.182 filas).*
-* ![Conteo de registros en floordetail](anexos/3.2%20floordetail%20count.png)
-*Figura 3.2b. Conteo total en `floordetail` antes de agrupar por `pid`.*
-* ![Conteo de registros en mssubclass](anexos/3.2%20mssubclass%20count.png)
+**Figuras. Esquema y conteos en `amesDB`:**
+
+![Conteo de registros en amesdbtemp](anexos/3.2%20amesdbtemp%20count.png)
+
+*Figura 3.2a. Verificación de conteo en `amesdbtemp` (2.930 filas).*
+
+![Conteo de registros en floordetail](anexos/3.2%20floordetail%20count.png)
+
+*Figura 3.2b. Distribución por piso en `floordetail` (4.182 filas).*
+  
+![Conteo de registros en mssubclass](anexos/3.2%20mssubclass%20count.png)
+
 *Figura 3.2c. Verificación del catálogo `mssubclass` (16 registros).*
-* ![Conteo de registros en mszoning](anexos/3.2%20mszoning%20count.png)
+  
+![Conteo de registros en mszoning](anexos/3.2%20mszoning%20count.png)
+
 *Figura 3.2d. Verificación del catálogo `mszoning` (8 registros).*
-* ![Conteo de registros en saleproperty](anexos/3.2%20saleproperty%20count.png)
+
+![Conteo de registros en saleproperty](anexos/3.2%20saleproperty%20count.png)
+
 *Figura 3.2e. Verificación de conteo en `saleproperty` (2.930 filas).*
-* ![Conteo de registros en typequality](anexos/3.2%20typequality%20count.png)
+
+![Conteo de registros en typequality](anexos/3.2%20typequality%20count.png)
+
 *Figura 3.2f. Verificación del catálogo `typequality` (5 registros).*
-* **Figura. Comprobación de duplicados y relación 1:N en `floordetail`:**
-* *Figura 3.2g. Verificación de conteo en `amesdbtemp` (2.930 filas).*
-* ![Conteo de registros en floordetail (vista detalle)](anexos/3.2%20floordetail%20count.jpeg)
+
+**Figura. Comprobación de duplicados y relación 1:N en `floordetail`:**
+
+![Conteo de registros en floordetail (vista detalle)](anexos/3.2%20floordetail%20count.jpeg)
+
+*Figura 3.2g. Conteo total en `floordetail` antes de agrupar por `pid`.*
+
+
 
 ### 3.3 MongoDB Atlas (`test`)
 
@@ -92,7 +112,7 @@ La base documental `test` contiene cuatro colecciones (`garage`, `bsmt`, `pool` 
 
 #### Evidencias de MongoDB Atlas
 * **Figura 3. Estructura de documentos y conteos en `test`:**
-* ![Documentos y conteo de bsmt en MongoDB](anexos/3.3%20bsmt%20docs%20y%20count.png)
+![Documentos y conteo de bsmt en MongoDB](anexos/3.3%20bsmt%20docs%20y%20count.png)
 *Figura 3.3a. Exploración y conteo de la colección `bsmt` (2.851 documentos).*
 ![Documentos y conteo de garage en MongoDB](anexos/3.3%20garage%20docs%20y%20count.png)
 *Figura 3.3b. Exploración y conteo de la colección `garage` (2.773 documentos).*
@@ -206,9 +226,22 @@ El universo de propiedades lo define `AmesProperty.csv` con sus **2.930 `PID` ú
   4. **Selección (`SelectorFinal`) y destino (`salida`):** ordena y renombra los 81 campos a `snake_case` y escribe un único archivo `salida.csv` (`partitionBy('hash', 1)`) en `salida/`.
 
 #### Evidencias de implementación en ADF
-* **Figura 4. Pipeline `DS_Mongo` y mapeo de `$numberLong`:** `[Insertar captura del canvas de DS_Mongo y TabularTranslator, sin credenciales]`.
-* **Figura 5. Pipeline `ames_etl` y Data Flow `df_ames`:** `[Insertar captura del canvas completo de df_ames y detalle legible de expresiones en cambios]`.
-* **Figura 6. Monitoreo de ejecución exitosa:** `[Insertar captura de Monitor mostrando estado Succeeded y conteos de filas leídas/escritas]`.
+
+![Data Flow df_ames en Azure Data Factory](anexos/6.%20data%20flow%20df_ames.jpeg)
+
+*Figura 6.1. Flujo de datos `df_ames` con los 6 orígenes, las 5 uniones externas izquierdas, `cambios` y `SelectorFinal`.*
+
+![Mapeo de $numberLong en MongoDB](anexos/6.%20longnumber%20mongo.jpeg)
+
+*Figura 6.2. Mapeo explícito de campos enteros `Int64` (`$numberLong`) en `TabularTranslator`.*
+
+![Pipeline ames_etl en Azure Data Factory](anexos/6.%20pipeline%20ames_etl.jpeg)
+
+*Figura 6.3. Pipeline `ames_etl` que orquesta la ejecución de `df_ames`.*
+
+![Pipeline DS_Mongo en Azure Data Factory](anexos/6.%20pipeline%20mongo.jpeg)
+
+*Figura 6.4. Pipeline `DS_Mongo` con las cuatro actividades `Copy` en paralelo.*
 
 #### Problemas resueltos durante la implementación
 
@@ -235,8 +268,23 @@ El archivo generado (`salida/salida.csv`, copiado en el repositorio como `out/sa
 | **6. Variables de calidad** (1 prueba) | Traducción desde `typequality` (`exter_cond`, `exter_qual`, `heating_QC`, `kitchen_qual`) | 0 diferencias por campo contra `amesdbtemp` y `typequality` | **APROBADO** | Resumen notebook (criterio 6) |
 | **7. Extracción de MongoDB** (8 pruebas) | Cardinalidad y comparación por `PID` de `garage` (2.773), `pool` (13), `bsmt` (2.851) y `misc` (106) | 0 duplicados y 0 diferencias en los 22 campos (`NA` en 157, 2.917, 80 y 2.824 casas respectivamente) | **APROBADO** | Resumen notebook (criterio 7) |
 
-* **Figura 7. Resultados de autovalidación (`validar_salida_ames.ipynb`):** `[Insertar capturas limpias del cuadro Resumen (7 criterios) y Detalle de pruebas (28/28 APROBADO), omitiendo rutas locales de usuario]`.
+#### Evidencias de Resultados Validación
 
+![Carga y marco de resultados del notebook](anexos/7.%20carga%20y%20marco%20de%20resultados.png)
+
+*Figura 7.1. Lectura de `salida.csv` con delimitador `;` (2.930 filas × 81 columnas).*
+
+![Contrato de los 81 encabezados en snake_case](anexos/7.%20contrato%20de%20los%2081%20encabezados.png)
+
+*Figura 7.2. Verificación del contrato de los 81 encabezados en orden y formato `snake_case`.*
+
+![Resumen de validación por criterio de la rúbrica](anexos/7.%20resumen%20pruebas.png)
+
+*Figura 7.3. Resumen de los 7 criterios de la rúbrica aprobados sin errores.*
+
+![Detalle de las 28 pruebas ejecutadas](anexos/7.%20detalle%20de%20pruebas.png)
+
+*Figura 7.4. Detalle completo de las 28 pruebas aprobadas en `validar_salida_ames.ipynb`.*
 ---
 
 ## 8. Tecnologías utilizadas
