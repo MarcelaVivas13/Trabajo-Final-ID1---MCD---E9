@@ -1,4 +1,3 @@
-## Aquí va el archivo de salida con alguna descripción
 ## Descripción del Archivo de Salida (`salida.csv`)
 
 El archivo `salida.csv` constituye el producto final consolidado del proceso ETL ejecutado en Azure Data Factory. Contiene el historial integral de transacciones inmobiliarias de la ciudad de Ames (Iowa), estructurado bajo un modelo tabular plano listo para tareas de análisis exploratorio y modelado predictivo.
