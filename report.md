@@ -54,7 +54,7 @@ La base relacional `amesDB` (esquema `public`) tiene 6 tablas: 3 entidades de da
 `floordetail` es la única entidad relacional con cardinalidad **1:N** respecto a `PID` (4.182 filas distribuidas entre 1.678 viviendas de un piso y 1.252 de dos pisos). Unirla directamente sin consolidar multiplicaría las 1.252 propiedades de dos niveles. Por ello se agrupa previamente por `pid` sumando `bedrooms`, `Full Bath` y `Half Bath` antes de cruzarla con `amesdbtemp`.
 
 #### Evidencias de PostgreSQL en Neon
-* **Figura 1. Esquema y conteos en `amesDB`:** `[Insertar captura de consulta de tablas/columnas y conteos COUNT(*) mostrando 2.930, 4.182 y catálogos, sin credenciales]`.
+* **Figura 1. Esquema y conteos en `amesDB`:** ![Flujo de datos df_ames](img/fig_1_df_ames.png).
 * **Figura 2. Comprobación de duplicados y relación 1:N en `floordetail`:** `[Insertar captura de GROUP BY / HAVING COUNT(*) > 1 y ejemplo de un PID con 2 pisos en floordetail]`.
 
 ### 3.3 MongoDB Atlas (`test`)
