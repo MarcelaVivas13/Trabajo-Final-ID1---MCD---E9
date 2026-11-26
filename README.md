@@ -1,32 +1,22 @@
 # Proyecto Ames de Ingeniería de Datos I
 
-Este repositorio es el template del proyecto de la Unidad 4 de **Ingeniería de Datos I**. Cada equipo de cuatro estudiantes debe crear su propio repositorio a partir de este template y utilizarlo para organizar el pipeline, la salida, la validación y la documentación del proyecto.
+Este repositorio es el template del proyecto de la Unidad 4 de **Ingeniería de Datos I**. Creamos un repositorio a partir de este template y lo utilizamos para organizar el pipeline, la salida, la validación y la documentación del proyecto.
 
-El proyecto consiste en construir en **Azure Data Factory** un proceso ETL que integra información de un archivo CSV, una base PostgreSQL en Neon y colecciones de MongoDB Atlas. El resultado requerido es `salida.csv`, con una fila por propiedad y los 81 campos establecidos en el enunciado.
-
-## Crear el repositorio del equipo
-
-1. Una sola persona del equipo debe abrir el [repositorio template](https://github.com/angievig/ETLIngenieriaDatos1).
-2. Debe seleccionar **Use this template** y luego **Create a new repository**.
-3. Debe elegir el nombre y la visibilidad indicados por la docente.
-4. Debe invitar como colaboradores a los otros tres integrantes.
-5. Cada integrante debe aceptar la invitación y clonar el repositorio con GitHub Desktop.
+El proyecto consiste en construir en **Azure Data Factory** un proceso ETL que integra información de un archivo CSV, una base PostgreSQL en Neon y colecciones de MongoDB Atlas. El resultado fue el archivo `salida.csv`, con una fila por propiedad y los 81 campos establecidos en el enunciado.
 
 La [guía para usar el repositorio en equipo](docs/GUIA_USO_REPOSITORIO_GITHUB.docx) explica este procedimiento paso a paso.
 
 ## Información del equipo
 
-Después de crear el repositorio, reemplacen esta sección con la información real del equipo.
-
-- **Nombre del equipo:** `[Completar]`
-- **Estado del proyecto:** `[En preparación | En desarrollo | Finalizado]`
+- **Nombre del equipo:** `Equipo9`
+- **Estado del proyecto:** `Finalizado`
 
 | Integrante | Usuario de GitHub |
 |---|---|
 | `Jenifer Marcela Vivas` | `@MarcelaVivas13` |
 | `Andres Olave` | `@Andrestast` |
 | `Santiago Portilla` | `@Sportilla16` |
-| `Sebastian Gonzalez` | `@sebasg0212@gmail.com` |
+| `Sebastian Gonzalez` | `@sebasgonzalezm` |
 
 ## Objetivo
 
