@@ -91,7 +91,15 @@ La base documental `test` contiene cuatro colecciones (`garage`, `bsmt`, `pool` 
 * **Cero válido (`0`):** En `bsmt` (áreas parciales/baños) y en 3 documentos de `misc` (`Misc Val = 0`) el `0` viene de origen y se conserva intacto; en cambio, `Garage Cars`, `Garage Area`, `Pool Area` y `Total Bsmt SF` nunca valen `0` en la fuente, por lo que en la salida indican ausencia.
 
 #### Evidencias de MongoDB Atlas
-* **Figura 3. Estructura de documentos y conteos en `test`:** `[Insertar captura de documentos ejemplo en MongoDB Compass y conteo/unicidad de PID, sin credenciales]`.
+* **Figura 3. Estructura de documentos y conteos en `test`:**
+* ![Documentos y conteo de bsmt en MongoDB](anexos/3.3%20bsmt%20docs%20y%20count.png)
+*Figura 3.3a. Exploración y conteo de la colección `bsmt` (2.851 documentos).*
+![Documentos y conteo de garage en MongoDB](anexos/3.3%20garage%20docs%20y%20count.png)
+*Figura 3.3b. Exploración y conteo de la colección `garage` (2.773 documentos).*
+![Documentos y conteo de misc en MongoDB](anexos/3.3%20misc%20docs%20y%20count.png)
+*Figura 3.3c. Exploración y conteo de la colección `misc` (106 documentos).*
+![Documentos y conteo de pool en MongoDB](anexos/3.3%20pool%20docs%20y%20count.png)
+*Figura 3.3d. Exploración y conteo de la colección `pool` (13 documentos).*
 
 ### 3.4 Síntesis de la exploración
 
